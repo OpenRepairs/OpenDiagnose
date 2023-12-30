@@ -40,6 +40,8 @@
     "typescript": "~4.5.4"
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "pretty-print-json": "^2.1.0",
+    "strip-ansi": "^7.1.0"
   }
 }
