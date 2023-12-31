@@ -8,6 +8,5 @@ import { prettyPrintJson } from 'pretty-print-json';
 contextBridge.exposeInMainWorld('electronAPI', {
     startRecovery: () => ipcRenderer.send('startRecovery'),
     endRecovery: () => ipcRenderer.send('endRecovery'),
-    batteryData: () => ipcRenderer.send('batteryData'),
-    onBattery: (callback:any) => ipcRenderer.on('battery-data', (_event, value) => callback(value)),
+    batteryData: () => ipcRenderer.send('batteryData')
 })

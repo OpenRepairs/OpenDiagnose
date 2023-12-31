@@ -49,9 +49,7 @@ const createWindow = (): void => {
       "-n",          // Argument for cmd.exe to carry out the specified script
     ]);
   })
-
-  let batteryData = '';
-
+  
   ipcMain.on('batteryData', ()=>{
     console.log('SENDING ')
     const cmd = spawn("python3", [
@@ -71,17 +69,7 @@ const createWindow = (): void => {
     })
 
     cmd.on('exit', ()=>{
-      console.log('EXITED ')
-
-      setTimeout(()=>{
-        //Read battery.json file
-        const filePath = path.join(__dirname, './../../src/battery.json');
-        const data = fs.readFileSync(filePath);
-        batteryData = data.toString();
-
-        mainWindow.webContents.send('battery-data', batteryData)
-      }, 2500)
-
+      console.log('EXITED')
     })
   })
 

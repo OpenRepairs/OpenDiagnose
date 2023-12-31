@@ -5,6 +5,8 @@ from pymobiledevice3.lockdown import create_using_usbmux
 from pymobiledevice3.services.syslog import SyslogService
 from pymobiledevice3.cli.cli_common import Command, print_json
 import json
+import datetime
+import uuid
 
 lockdown = create_using_usbmux()
 
@@ -85,8 +87,12 @@ def diagnostics_battery_single(service_provider: LockdownClient):
         'built-in': raw_info.get('built-in'),
     }
 
-    ' Stringify '
-    customString = json.dumps(custom, sort_keys=True, default=default_json_encoder)
+    ' Stringify with 2 spaces '
+    
+
+
+
+    customString = json.dumps(custom, sort_keys=True, default=default_json_encoder, indent=2)
 
     ' Get current path '
 
@@ -94,6 +100,10 @@ def diagnostics_battery_single(service_provider: LockdownClient):
     f = open("src/battery.json", "w")
     f.write(customString)
     f.close()
+
+    ' Run open command '
+    import os
+    os.system("open src/battery.json")
     
 
     
