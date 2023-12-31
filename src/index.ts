@@ -57,7 +57,8 @@ const createWindow = (): void => {
     const cmd = spawn("python3", [
       "src/getBattery.py"
     ])
-    
+
+    fs.writeFileSync(path.join(__dirname, './../../src/battery.json'), JSON.stringify({}));
     
     cmd.stdout.on('data', (data)=>{
       console.log('DATA ')
